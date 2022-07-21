@@ -2,12 +2,13 @@ global using FastEndpoints;
 global using FluentValidation;
 using Colossus.Infrastructure.Api.Config.Middleware;
 using Colossus.Infrastructure.Data;
+using Colossus.Infrastructure.Data.Seed;
 using FastEndpoints.Swagger;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddFastEndpoints();
-builder.Services.AddSwaggerDoc(); //add this
+builder.Services.AddSwaggerDoc();
 builder.Services.AddDbContext<IDbContext, ColossusContext>(
        options => options.UseSqlite("Data Source=Database.db"));
 builder.Services.AddScoped(typeof(Colossus.Domain.Gateway.IRepository<>), typeof(Colossus.Infrastructure.Data.Repository.Repository<>));

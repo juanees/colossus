@@ -1,6 +1,6 @@
 ﻿using Colossus.Domain.Model;
 
-namespace Colossus.Infrastructure.Api.Handler.SpareParts.GetAll
+namespace Colossus.Infrastructure.Api.Endpoint.SpareParts.GetAll
 {
     public class Mapper : Mapper<Request, Response, IEnumerable<SparePart>>
     {        
@@ -10,7 +10,7 @@ namespace Colossus.Infrastructure.Api.Handler.SpareParts.GetAll
             {
                 SpareParts = spareParts.Select(x => new Response.SparePart
                 {
-                    Id = x.ExternalId.ToString(),
+                    Id = x.Id.ToString(),
                     Description = x.Description,
                 })
             };

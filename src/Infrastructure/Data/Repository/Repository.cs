@@ -17,7 +17,7 @@ namespace Colossus.Infrastructure.Data.Repository
             this._context = context;
         }
 
-        public T GetById(Id id)
+        public T GetById(long id)
         {
             return this.Entities.Find(id);
         }

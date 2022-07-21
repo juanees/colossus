@@ -2,7 +2,7 @@
 using Colossus.Domain.Service;
 using Microsoft.AspNetCore.Authorization;
 
-namespace Colossus.Infrastructure.Api.Handler.SpareParts.GetAll
+namespace Colossus.Infrastructure.Api.Endpoint.SpareParts.GetAll
 {
     [HttpGet("spareparts"), AllowAnonymous]
     public class Endpoint : Endpoint<Request, Response, Mapper>

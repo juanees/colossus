@@ -1,4 +1,4 @@
-﻿namespace Colossus.Infrastructure.Api.Handler.SpareParts.GetAll
+﻿namespace Colossus.Infrastructure.Api.Endpoint.SpareParts.GetAll
 {
     public class Request
     {

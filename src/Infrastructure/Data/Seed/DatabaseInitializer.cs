@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 
-namespace Colossus.Infrastructure.Data;
+namespace Colossus.Infrastructure.Data.Seed;
 public static class DatabaseInitializer
 {
     private static readonly string _seedBasePath = @"Infrastructure" + Path.DirectorySeparatorChar + "Data" + Path.DirectorySeparatorChar + "Seed" + Path.DirectorySeparatorChar;
@@ -11,7 +11,7 @@ public static class DatabaseInitializer
     {
         if (dbContext is DbContext db)
         {
-            db.Database.Migrate();            
+            db.Database.Migrate();
             if (!await db.Set<SparePart>().AnyAsync())
             {
                 var spareParts = JsonSerializer.Deserialize<List<sparePart>>(File.ReadAllText(_seedBasePath + "spare-parts-mock.json"))
@@ -19,7 +19,6 @@ public static class DatabaseInitializer
                     {
                         Description = x.description,
                         Id = x.id,
-                        ExternalId = Id.From(Guid.Parse(x.externalId)),
                     });
 
                 dbContext.Set<SparePart>().AddRange(spareParts);
@@ -32,5 +31,5 @@ public static class DatabaseInitializer
             throw new ArgumentNullException(nameof(db));
         }
     }
-    public readonly record struct sparePart(string description, long id,string externalId);
+    public readonly record struct sparePart(string description, long id, string externalId);
 }

@@ -17,7 +17,7 @@ namespace Colossus.Domain.Service
             repository.Delete(entity);  
         }        
 
-        public T Get(Id id)
+        public T Get(long id)
         {         
             return repository.GetById(id);
         }

@@ -1,9 +1,8 @@
 ﻿using Colossus.Domain.Model;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
-namespace Colossus.Infrastructure.Data.Mapping
+namespace Colossus.Infrastructure.Data.EF.Mapping
 {
     public class SparePartMap : IEntityTypeConfiguration<SparePart>
     {
@@ -12,15 +11,6 @@ namespace Colossus.Infrastructure.Data.Mapping
             builder.HasKey(o => o.Id);
             builder.Property(o => o.Id)
                 .ValueGeneratedOnAdd();
-
-            builder.Property(t => t.ExternalId)           
-               .HasConversion(
-              v => v.Value,
-              v => Id.From(v))
-               .IsRequired();
-
-            builder.HasIndex(u => u.ExternalId)
-                .IsUnique();
 
             builder.Property(t => t.Description)
                     .IsRequired();

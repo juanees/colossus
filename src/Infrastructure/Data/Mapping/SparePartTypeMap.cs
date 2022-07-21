@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
-namespace Colossus.Infrastructure.Data.Mapping
+namespace Colossus.Infrastructure.Data.EF.Mapping
 {
     public class SparePartTypeMap : IEntityTypeConfiguration<SparePartType>
     {
@@ -13,16 +13,6 @@ namespace Colossus.Infrastructure.Data.Mapping
             builder.HasKey(o => o.Id);
             builder.Property(o => o.Id)
                 .ValueGeneratedOnAdd();
-            
-
-            builder.Property(t => t.ExternalId)
-                .HasConversion(
-               v => v.Value.ToString(),
-               v => Id.From(Guid.Parse(v)))
-                .IsRequired();
-
-            builder.HasIndex(u => u.ExternalId)
-                .IsUnique();
 
             builder.Property(t => t.Description)
                     .IsRequired();
